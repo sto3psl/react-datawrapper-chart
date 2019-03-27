@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import PropTypes from 'prop-types'
 
 export default function DWChart({ title, src, ...props }) {
@@ -6,18 +6,21 @@ export default function DWChart({ title, src, ...props }) {
 
   const [height, setState] = useState(500)
 
-  useEffect(() => {
-    function onMessage({ data = {} }) {
+  const onMessage = useCallback(
+    ({ data = {} }) => {
       if (typeof data === 'string') return
       const height = data['datawrapper-height'] && data['datawrapper-height'][id]
       if (height) {
         setState(height)
       }
-    }
+    },
+    [id, setState]
+  )
 
+  useEffect(() => {
     window.addEventListener('message', onMessage)
     return () => window.removeEventListener('message', onMessage)
-  }, [id, height, setState])
+  }, [id, height, setState, onMessage])
 
   return (
     <iframe
