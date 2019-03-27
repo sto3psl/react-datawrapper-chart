@@ -21,13 +21,13 @@ export default function DWChart({ title, src, ...props }) {
 
   return (
     <iframe
+      scrolling="no"
+      frameBorder="0"
+      width="100%"
       {...props}
       title={title}
       src={src}
-      width="100%"
       height={height}
-      scrolling="no"
-      frameBorder="0"
     />
   )
 }
