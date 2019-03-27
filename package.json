@@ -27,7 +27,7 @@
     "react-dom": "^16.8.5"
   },
   "peerDependencies": {
-    "react": "^16.8.5"
+    "react": "^16.8"
   },
   "eslintConfig": {
     "parser": "babel-eslint"
