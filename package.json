@@ -1,14 +1,20 @@
 {
   "name": "react-datawrapper-chart",
   "version": "0.0.4",
+  "author": "Fabian Gündel <f.guendel@gmail.com>",
+  "keywords": [
+    "datawrapper",
+    "chart",
+    "react",
+    "component"
+  ],
   "files": [
     "pkg"
   ],
   "scripts": {
     "format": "prettier 'src/**/*.js' --write",
     "lint": "prettier --check 'src/**/*.js' && healthier 'src/**/*.js'",
-    "build": "pack build",
-    "prepublishOnly": "npm run build"
+    "build": "pack build"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
