@@ -3,6 +3,14 @@
   "description": "React component to embed Datawrapper Charts",
   "version": "1.0.1",
   "author": "Fabian Gündel <f.guendel@gmail.com>",
+  "homepage": "https://github.com/datawrapper/react-datawrapper-chart#readme",
+  "bugs": {
+    "url": "https://github.com/datawrapper/react-datawrapper-chart/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sto3psl/react-datawrapper-chart.git"
+  },
   "keywords": [
     "datawrapper",
     "chart",
