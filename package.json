@@ -23,7 +23,8 @@
   "scripts": {
     "format": "prettier 'src/**/*.js' --write",
     "lint": "prettier --check 'src/**/*.js' && healthier 'src/**/*.js'",
-    "build": "pack build"
+    "build": "pack build",
+    "version": "npm run build"
   },
   "dependencies": {
     "prop-types": "^15.7.2"
