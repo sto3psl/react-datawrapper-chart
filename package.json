@@ -2,7 +2,11 @@
   "name": "react-datawrapper-chart",
   "description": "React component to embed Datawrapper Charts",
   "version": "1.0.3",
-  "author": "Fabian Gündel <f.guendel@gmail.com>",
+  "author": {
+    "name": "Fabian Gündel",
+    "url": "https://github.com/sto3psl"
+  },
+  "license": "ISC",
   "homepage": "https://github.com/sto3psl/react-datawrapper-chart#readme",
   "bugs": {
     "url": "https://github.com/sto3psl/react-datawrapper-chart/issues"
@@ -23,24 +27,25 @@
   "scripts": {
     "format": "prettier 'src/**/*.js' --write",
     "lint": "prettier --check 'src/**/*.js' && healthier 'src/**/*.js'",
-    "build": "pack build",
+    "build": "pika build",
     "version": "npm run build"
   },
   "dependencies": {
-    "prop-types": "15.7.2"
+    "prop-types": "^15.7.0"
   },
   "devDependencies": {
-    "@babel/preset-react": "~7.0.0",
+    "@babel/preset-env": "~7.10.4",
+    "@babel/preset-react": "~7.10.4",
     "@pika/pack": "~0.5.0",
-    "@pika/plugin-build-web": "~0.6.1",
-    "@pika/plugin-standard-pkg": "~0.6.1",
-    "babel-eslint": "~10.0.3",
-    "healthier": "~3.2.0",
-    "husky": "~3.0.5",
-    "lint-staged": "~9.4.0",
-    "prettier": "~1.18.2",
-    "react": "~16.9.0",
-    "react-dom": "~16.9.0"
+    "@pika/plugin-build-web": "~0.9.2",
+    "@pika/plugin-standard-pkg": "~0.9.2",
+    "babel-eslint": "~10.1.0",
+    "healthier": "~4.0.0",
+    "husky": "~4.2.5",
+    "lint-staged": "~10.2.11",
+    "prettier": "~2.0.5",
+    "react": "~16.13.1",
+    "react-dom": "~16.13.1"
   },
   "peerDependencies": {
     "react": "^16.8"
@@ -51,8 +56,7 @@
   "lint-staged": {
     "*.js": [
       "prettier --write",
-      "healthier",
-      "git add"
+      "healthier"
     ]
   },
   "prettier": {
