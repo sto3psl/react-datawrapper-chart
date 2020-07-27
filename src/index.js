@@ -37,5 +37,6 @@ export default function DWChart({ title, src, ...props }) {
 
 DWChart.propTypes = {
   title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired
+  src: PropTypes.string.isRequired,
+  loading: PropTypes.oneOf(['eager', 'lazy']),
 }

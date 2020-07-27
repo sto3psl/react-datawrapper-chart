@@ -18,6 +18,7 @@ ReactDOM.render(<DWChart title="Chart" src="//datawrapper.dwcdn.net/rjRUb/7/" />
 
 - `title` (`string` | required) - title attribute for the underlying `iframe`.
 - `src` (`string` | required) - src attribute for the underlying `iframe`. This should be the link from the **publish** step of a Datawrapper chart.
+- `loading` (`eager|lazy`) - `iframe` loading attribute, which is useful for [lazy loading](https://web.dev/iframe-lazy-loading/).
 
 Additional props will get passed to the `iframe`. If a `height` prop is passed, it will do nothing. The component handles resizing itself. If the height should be fixed, there is no point in using this component and it is recommended to use an `iframe` directly.
 
