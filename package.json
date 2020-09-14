@@ -1,7 +1,7 @@
 {
   "name": "react-datawrapper-chart",
   "description": "React component to embed Datawrapper Charts",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "author": {
     "name": "Fabian Gündel",
     "url": "https://github.com/sto3psl"
