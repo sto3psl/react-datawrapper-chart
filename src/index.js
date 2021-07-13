@@ -1,38 +1,51 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-export default function DWChart({ title, src, ...props }) {
-  const id = src.split('/').filter((str, i) => str.length === 5 && !!i)
+export default class DWChart extends React.Component {
 
-  const [height, setState] = useState(500)
+  constructor(props) {
+    super(props);
+    this.iframeRef = React.createRef();
+    this.state = {
+      height: 500
+    }
+  }
 
-  const onMessage = useCallback(
-    ({ data = {} }) => {
-      if (typeof data === 'string') return
+  componentDidMount() {
+      window.addEventListener('message', this.onMessage.bind(this));
+  }
+
+  componentWillUnmount() {
+      window.removeEventListener('message', this.onMessage.bind(this));
+  }
+
+  onMessage({data = {}, source}) {
+    const id = this.props.src.split('/').filter((str, i) => str.length === 5 && !!i);
+    if (typeof data === 'string') return;
+    if (source === this.iframeRef.current.contentWindow) {
       const height = data['datawrapper-height'] && data['datawrapper-height'][id]
       if (height) {
-        setState(height)
+        this.setState({height})
       }
-    },
-    [id, setState]
-  )
+    }
+  }
 
-  useEffect(() => {
-    window.addEventListener('message', onMessage)
-    return () => window.removeEventListener('message', onMessage)
-  }, [id, height, setState, onMessage])
+  render() {
+    const { title, src, ...props } = this.props;
 
-  return (
-    <iframe
-      scrolling="no"
-      frameBorder="0"
-      width="100%"
-      {...props}
-      title={title}
-      src={src}
-      height={height}
-    />
-  )
+    return (
+      <iframe
+        ref={this.iframeRef}
+        scrolling="no"
+        frameBorder="0"
+        width="100%"
+        {...props}
+        title={title}
+        src={src}
+        height={this.state.height}
+      />
+    )
+  }
 }
 
 DWChart.propTypes = {
