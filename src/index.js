@@ -1,51 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import PropTypes from 'prop-types'
 
-export default class DWChart extends React.Component {
+export default function DWChart({ title, src, ...props }) {
+  const id = src.split('/').filter((str, i) => str.length === 5 && !!i)
+  const iframeRef = useRef()
+  const [height, setState] = useState(500)
 
-  constructor(props) {
-    super(props);
-    this.iframeRef = React.createRef();
-    this.state = {
-      height: 500
-    }
-  }
+  const onMessage = useCallback(
+    ({ data = {}, source }) => {
+      if (typeof data === 'string' || source !== iframeRef.current.contentWindow) return
 
-  componentDidMount() {
-      window.addEventListener('message', this.onMessage.bind(this));
-  }
-
-  componentWillUnmount() {
-      window.removeEventListener('message', this.onMessage.bind(this));
-  }
-
-  onMessage({data = {}, source}) {
-    const id = this.props.src.split('/').filter((str, i) => str.length === 5 && !!i);
-    if (typeof data === 'string') return;
-    if (source === this.iframeRef.current.contentWindow) {
       const height = data['datawrapper-height'] && data['datawrapper-height'][id]
       if (height) {
-        this.setState({height})
+        setState(height)
       }
-    }
-  }
+    },
+    [id, setState, iframeRef]
+  )
 
-  render() {
-    const { title, src, ...props } = this.props;
+  useEffect(() => {
+    window.addEventListener('message', onMessage)
+    return () => window.removeEventListener('message', onMessage)
+  }, [id, height, setState, onMessage])
 
-    return (
-      <iframe
-        ref={this.iframeRef}
-        scrolling="no"
-        frameBorder="0"
-        width="100%"
-        {...props}
-        title={title}
-        src={src}
-        height={this.state.height}
-      />
-    )
-  }
+  return (
+    <iframe
+      ref={iframeRef}
+      scrolling="no"
+      frameBorder="0"
+      width="100%"
+      {...props}
+      title={title}
+      src={src}
+      height={height}
+    />
+  )
 }
 
 DWChart.propTypes = {
