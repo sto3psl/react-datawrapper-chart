@@ -29,7 +29,8 @@
     "lint": "prettier --check 'src/**/*.js' && healthier 'src/**/*.js'",
     "build": "pika build",
     "publish": "pika publish",
-    "version": "npm run build"
+    "version": "npm run build",
+    "test": "npm run lint"
   },
   "dependencies": {
     "prop-types": "^15.7.0"
