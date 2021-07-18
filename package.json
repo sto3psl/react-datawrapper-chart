@@ -28,6 +28,7 @@
     "format": "prettier 'src/**/*.js' --write",
     "lint": "prettier --check 'src/**/*.js' && healthier 'src/**/*.js'",
     "build": "pika build",
+    "publish": "pika publish",
     "version": "npm run build"
   },
   "dependencies": {
