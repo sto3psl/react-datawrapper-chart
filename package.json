@@ -51,7 +51,7 @@
     "react-dom": "~16.13.1"
   },
   "peerDependencies": {
-    "react": "^16.8"
+    "react": "^16.8 - ^18"
   },
   "eslintConfig": {
     "parser": "babel-eslint"
